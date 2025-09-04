@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AHS:RT</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; }
+    #box { width: 600px; height: 300px; background: red; margin: 40px auto; line-height: 200px; color: white; font-size: 24px; cursor: pointer; }
+    canvas { max-width: 1200px; max-height: 600px; margin: 20px auto; display: block; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.5/jstat.min.js"></script>
+</head>
+<body>
+  <style>
+    body {
+      background-color: #1E1E1E;
+      color: whitesmoke;
+    }
+    canvas { 
+      width: 600px;   /* wider */
+      height: 400px;  /* taller */
+      margin: 20px auto; 
+      display: block; 
+    }
+  </style>
+  <h1>AHS Reaction Time Test</h1>
+  <p>Wait until the box turns green, then click as fast as you can.</p>
+  <div id="box">Wait...</div>
+  <p id="result"></p>
+  <p id="stats"></p>
+
+  <!-- User chart -->
+  <canvas id="userChart" style="background-color: white;"></canvas>
+
+  <!-- Global chart -->
+  <canvas id="globalChart" style="background-color: white;"></canvas>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
