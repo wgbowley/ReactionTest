@@ -1,39 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>AHS:RT</title>
-  <style>
-    body { text-align: center; font-family: sans-serif; }
-    #box { width: 600px; height: 300px; background: red; margin: 40px auto; line-height: 200px; color: white; font-size: 24px; cursor: pointer; }
-    canvas { max-width: 1200px; max-height: 600px; margin: 20px auto; display: block; }
-  </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.5/jstat.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" type="text/css">
 </head>
 <body>
-  <style>
-    body {
-      background-color: #1E1E1E;
-      color: whitesmoke;
-    }
-    canvas { 
-      width: 600px;   /* wider */
-      height: 400px;  /* taller */
-      margin: 20px auto; 
-      display: block; 
-    }
-  </style>
-  <h1>AHS Reaction Time Test</h1>
-  <p>Wait until the box turns green, then click as fast as you can.</p>
-  <div id="box">Wait...</div>
-  <p id="result"></p>
-  <p id="stats"></p>
+  <header>
+    <h1>Auburn High Reaction Test</h1>
+    <p id="totalPeopleCount"></p>
+    <p>Wait until the box turns <b>blue</b>, then click as fast as you can!</p>
+  </header>
 
-  <!-- User chart -->
-  <canvas id="userChart" style="background-color: white;"></canvas>
+  <main>
+    <section id="reaction-test">
+      <div id="box" tabindex="0" aria-live="polite">Wait...</div>
+      <p id="stats"></p>
+      <div id="userInfo"></div>
+    </section>
 
-  <!-- Global chart -->
-  <canvas id="globalChart" style="background-color: white;"></canvas>
+    <section id="share-container">
+      <p>Test your reaction time and see how you compare! After each attempt, you'll get:</p>
+      <ul>
+        <li><b>Your personal bell curve</b> of reaction times</li>
+        <li><b>Comparison with the global sample</b></li>
+        <li><b>Your percentile ranking</b>—see if you're faster than most!</li>
+      </ul>
+      <p>Give it a go, then share this test with friends to compare scores and help me collect data for my Specialist Math SAC.</p>
+      <button id="copy-button">Copy Link</button>
+    </section>
+
+    <section id="chart-container">
+      <div class="chart-wrapper">
+        <canvas id="userChart"></canvas>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="globalChart"></canvas>
+      </div>
+    </section>
+  </main>
 
   <script src="/static/script.js"></script>
 </body>

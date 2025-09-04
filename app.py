@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import uuid, sqlite3
+import numpy as np
+import scipy.stats as stats
+import bisect
 
 app = Flask(__name__)
 DB_FILE = "reaction.db"
@@ -44,7 +47,7 @@ def get_stats(user_id):
     cur.execute("SELECT AVG(time), COUNT(time), "
                 "CASE WHEN COUNT(time) > 1 THEN "
                 "   (AVG((time * 1.0 - (SELECT AVG(time) FROM results WHERE user_id=?)) * "
-                "       (time * 1.0 - (SELECT AVG(time) FROM results WHERE user_id=?)))) "
+                "      (time * 1.0 - (SELECT AVG(time) FROM results WHERE user_id=?)))) "
                 "ELSE 0 END "
                 "FROM results WHERE user_id=?", (user_id, user_id, user_id))
     row = cur.fetchone()
@@ -73,22 +76,20 @@ def index():
 def get_global_stats():
     conn = sqlite3.connect(DB_FILE)
     cur = conn.cursor()
-    cur.execute("SELECT AVG(time), COUNT(time), "
-                "CASE WHEN COUNT(time) > 1 THEN "
-                "   (AVG((time * 1.0 - (SELECT AVG(time) FROM results)) * "
-                "       (time * 1.0 - (SELECT AVG(time) FROM results)))) "
-                "ELSE 0 END "
-                "FROM results")
-    row = cur.fetchone()
+    # Compute mean per user
+    cur.execute("SELECT AVG(time) FROM results GROUP BY user_id")
+    user_means = [row[0] for row in cur.fetchall()]
     conn.close()
-    if row and row[0] is not None:
-        mean = row[0]
-        count = row[1]
-        variance = row[2] if row[2] else 0
+
+    total_users = len(user_means)
+    if user_means:
+        mean = sum(user_means) / total_users
+        variance = sum((x - mean) ** 2 for x in user_means) / total_users
         stdev = variance ** 0.5
-        return {"mean": mean, "count": count, "stdev": stdev}
+        count = len(user_means)
+        return {"mean": mean, "stdev": stdev, "count": count, "total_users": total_users}
     else:
-        return {"mean": 0, "count": 0, "stdev": 0}
+        return {"mean": 0, "stdev": 0, "count": 0, "total_users": total_users}
 
 @app.route("/submit", methods=["POST"])
 def submit():
@@ -101,16 +102,29 @@ def submit():
         return jsonify({"error": "Invalid data"}), 400
 
     add_result(user_id, reaction_time)
-    stats = get_stats(user_id)
-    global_stats = get_global_stats()
+    user_stats = get_stats(user_id)
+
+    # User-level means for all users
+    conn = sqlite3.connect(DB_FILE)
+    cur = conn.cursor()
+    cur.execute("SELECT AVG(time) FROM results GROUP BY user_id")
+    user_means = [row[0] for row in cur.fetchall()]
+    conn.close()
+
+    total_users = len(user_means)
+    global_mean = np.mean(user_means) if user_means else 0
+    global_stdev = np.std(user_means) if user_means else 1
+
+    percentile = stats.norm.cdf(user_stats["mean"], loc=global_mean, scale=global_stdev) * 100
 
     return jsonify({
-        "mean": stats["mean"], 
-        "stdev": stats["stdev"], 
-        "count": stats["count"],
-        "global_mean": global_stats["mean"],
-        "global_stdev": global_stats["stdev"],
-        "global_count": global_stats["count"]
+        "mean": user_stats["mean"],
+        "stdev": user_stats["stdev"],
+        "count": user_stats["count"],
+        "global_mean": global_mean,
+        "global_stdev": global_stdev,
+        "total_users": total_users,
+        "percentile": percentile
     })
 
 if __name__ == "__main__":
