@@ -22,7 +22,7 @@ import os
 from typing import Dict
 
 # Gets the database file path from an environment variable
-DB_FILE = os.getenv('DB_FILE_PATH', '/data/reaction.db')
+DB_FILE = os.getenv('DB_FILE_PATH', '/var/data/reaction.db')
 os.makedirs(os.path.dirname(DB_FILE), exist_ok=True)
 
 
