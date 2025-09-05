@@ -172,7 +172,7 @@ const startTest = () => {
         // Set a timeout to handle the "too slow" case.
         clickTimeout = setTimeout(() => {
             handleTooSlow();
-        }, 5000);
+        }, 1000);
     }, delay);
 };
 

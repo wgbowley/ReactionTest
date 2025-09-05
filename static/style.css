@@ -14,16 +14,19 @@ body {
     text-align: center;
     color: var(--color);
     margin: 0;
-    padding: 20px;
+    padding: 15px;
 }
 
 h1 {
     font-weight: 600;
     margin-bottom: 5px;
+    font-size: 1.4rem; 
 }
 
 p {
     color: var(--sub-color);
+    padding: 0 10px;
+    font-size: 0.8rem; 
 }
 
 b {
@@ -32,14 +35,14 @@ b {
 
 #box {
     margin: 20px auto;
-    width: 90%;
-    max-width: 400px;
-    height: 200px;
+    width: 95%;
+    max-width: 600px;
+    height: 400px; 
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     font-weight: bold;
     background-color: var(--box-default);
     color: white;
@@ -52,16 +55,16 @@ b {
 
 #chart-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; 
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     margin: 30px auto;
     max-width: 1200px;
 }
 
 .chart-wrapper {
-    flex: 1 1 300px;
-    max-width: 500px;
+    flex: 1 1 100%;
+    max-width: 100%;
     background-color: var(--chart-background);
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -73,6 +76,7 @@ b {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 15px;
 }
 
 #share-container ul {
@@ -82,6 +86,7 @@ b {
 }
 
 #copy-button {
+    width: 100%;
     background-color: var(--accent-color);
     color: white;
     padding: 12px 25px;
@@ -98,4 +103,42 @@ b {
 
 #copy-button:active {
     transform: scale(0.95);
+}
+
+@media (min-width: 1000px) {
+    body {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        padding: 0;
+    }
+
+    #box {
+        height: 200px;
+        font-size: 1.5rem;
+    }
+
+    #chart-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .chart-wrapper {
+        flex: 1 1 300px;
+        max-width: 500px;
+    }
+
+    #share-container {
+        padding: 0;
+    }
+
+    #copy-button {
+        width: auto;
+    }
 }
