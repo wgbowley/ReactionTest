@@ -16,23 +16,24 @@ from modules.routes import bp as routes_bp
 from modules.database import initialize_database
 
 # Create the main Flask application instance
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder="template")
+
+initialize_database()
 
 # Register the Blueprint from the routes.py file
 app.register_blueprint(routes_bp)
 
-# Configure logging 
-handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=1)
+# Configure logging
+handler = RotatingFileHandler("app.log", maxBytes=10000, backupCount=1)
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter(
-    '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+    "%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]"
 )
-
 handler.setFormatter(formatter)
 app.logger.addHandler(handler)
 
-app.logger.info('Application startup')
+app.logger.info("Application startup")
 
-if __name__ == '__main__':
-    initialize_database()
+# Only run the dev server when executed directly
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False)
