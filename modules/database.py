@@ -22,7 +22,7 @@ import os
 from typing import Dict
 
 # Gets the database file path from an environment variable
-DB_FILE = os.getenv('DB_FILE_PATH', 'reaction.db')
+DB_FILE = os.getenv('DB_FILE_PATH', os.path.join(os.getcwd(), 'reaction.db'))
 
 
 def initialize_database() -> None:
@@ -147,4 +147,3 @@ def get_global_stats() -> Dict[str, float]:
         }
     else:
         return {"mean": 0, "stdev": 0, "count": 0, "total_users": total_users}
-
