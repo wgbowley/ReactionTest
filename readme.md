@@ -2,8 +2,8 @@
 A simple Flask application to measure your reflexes and compare them against a Gaussian population distribution. 
 Designed to collect data for my Specialist Math SAC while letting users have a bit of fun.
 
-### Live Demo
-Check out the live version [here](https://reactiontest.onrender.com/)!
+### Participate in survey
+Click here: [here](https://reactiontest.onrender.com/)!
 
 ## Features
 - Personal reaction time distribution with <b>mean, standard deviation, and trial count</b>
