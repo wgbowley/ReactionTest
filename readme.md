@@ -5,6 +5,10 @@ Designed to collect data for my Specialist Math SAC while letting users have a b
 ### Live Demo
 Check out the live version [here](https://reactiontest.onrender.com/)!
 
+As promised, the raw data is available here: <br>
+Last updated from the website on 7/9/2025.
+[`/dataset`](./dataset/reaction.sql)
+
 ## Features
 - Personal reaction time distribution with <b>mean, standard deviation, and trial count</b>
 - Comparison to the <b>global population distribution</b>
