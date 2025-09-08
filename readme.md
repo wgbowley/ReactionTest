@@ -6,8 +6,14 @@ Designed to collect data for my Specialist Math SAC while letting users have a b
 Click here: [here](https://reactiontest.onrender.com/)!
 
 As promised, the raw data is available here: <br>
-Last updated from the website on 7/9/2025.
+Last updated from the website on 7/9/2025. <br>
 [`/dataset`](./dataset/reaction.sql)
+
+The dataset also provides a neat demonstration of the Central Limit Theorem:
+![Bar graph of reaction times](images\trial_times.png)
+
+
+
 
 ## Features
 - Personal reaction time distribution with <b>mean, standard deviation, and trial count</b>
