@@ -9,7 +9,7 @@ As promised, the raw data is available here: <br>
 Last updated from the website on 7/9/2025. <br>
 [`/dataset`](./dataset/reaction.sql)
 
-The dataset also provides a neat demonstration of the Central Limit Theorem:
+The dataset also shows a normally distributed shape:
 ![Bar graph of reaction times](images/trial_times.png)
 
 
