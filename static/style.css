@@ -46,7 +46,7 @@ b {
     font-weight: bold;
     background-color: var(--box-default);
     color: white;
-    transition: background-color 0.3s, transform 0.2s;
+    /* transition: background-color 0.3s, transform 0.2s; THIS MAY HAVE SHIFTED THE DATA*/ 
 }
 
 #box:active {

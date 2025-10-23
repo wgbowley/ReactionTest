@@ -18,7 +18,7 @@ def calculate_percentile(user_mean, global_mean, global_stdev):
     compared to the global distribution.
     """
 
-    # Existance check for gloval standard deviation
+    # Existence check for global standard deviation
     if global_stdev == 0:
         return 50  # Return 50th percentile if no spread in data
 
