@@ -13,7 +13,7 @@ Last updated from the website on 7/9/2025. <br>
 [`/dataset`](./dataset/reaction.sql)
 
 The dataset also provides a neat demonstration of the Central Limit Theorem:
-![Bar graph of reaction times](images\trial_times.png)
+![Bar graph of reaction times](images/trial_times.png)
 
 ### Possible systematic error:
 ```css
