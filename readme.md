@@ -1,5 +1,5 @@
 ## Reaction Test
-A simple Flask application to measure your reflexes and compare them against a Gaussian population distribution. 
+A simple Flask application to measure your reflexes and compare them against a normal population distribution. 
 Designed to collect data for my Specialist Math SAC while letting users have a bit of fun.
 
 ### Participate in survey
@@ -12,8 +12,11 @@ As promised, the raw data is available here: <br>
 Last updated from the website on 7/9/2025. <br>
 [`/dataset`](./dataset/reaction.sql)
 
-The dataset also provides a neat demonstration of the Central Limit Theorem:
-![Bar graph of reaction times](images/trial_times.png)
+The raw dataset forms a normal distribution, which is neat.
+
+<div align="center">
+  <img src="images/trial_times.png" alt="Bar graph of reaction times" style="max-width: 900px; width: 100%; height: auto;">
+</div>
 
 ### Possible systematic error:
 ```css
